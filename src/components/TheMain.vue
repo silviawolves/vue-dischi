@@ -6,7 +6,7 @@
             <div class="d-flex justify-content-end pb-4">
                 <select class="form-select">
                     <option selected>Seleziona il genere dal menù</option>
-                    <option v-for="(generi, i) in discList" :key="i" :value="i">{{ generi.genre }}</option>
+                    <option v-for="(generi, i) in fetchGenreList" :key="i" :value="i">{{ generi }}</option>
                 </select>
             </div>
 
@@ -39,10 +39,23 @@ export default {
             axios.get(this.apiUrl).then((risultato) => {
                 this.discList = risultato.data.response
             })
-        }
+        },
     },
     mounted() {
         this.fetchDiscList()
+    },
+    computed: {
+        fetchGenreList() {
+            const genreList = [];
+
+            this.discList.forEach((disco) => {
+                if (!genreList.includes(disco.genre)) {
+                    genreList.push(disco.genre)
+                }
+            })
+
+            return genreList
+        },
     }
 }
 </script>
