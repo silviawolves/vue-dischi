@@ -2,7 +2,7 @@
     <div class="main">
         <div class="container py-5">
 
-            <div class="row row-cols-5 gx-5 gy-3">
+            <div class="row row-cols-5 gx-5 gy-3 mx-5">
                 <div class="col" v-for="(dischi, i) in discList" :key="i">
                     <CardDisco :disc-img="dischi.poster" :disc-title="dischi.title" :disc-author="dischi.author" :disc-year="dischi.year"></CardDisco>
                 </div>
@@ -38,6 +38,7 @@ export default {
 }
 </script>
 
+
 <style lang="scss" scoped>
 @import "../assets/scss/_variables.scss";
 
@@ -45,5 +46,4 @@ export default {
     background-color: $secondary;
     flex-grow: 1;
 }
-
 </style>

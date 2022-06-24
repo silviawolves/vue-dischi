@@ -38,7 +38,7 @@ export default {
     .title {
         padding: 1rem 0;
         text-transform: uppercase;
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         color: white;
         font-weight: bold;
         line-height: 100%;
