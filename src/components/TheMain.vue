@@ -5,7 +5,7 @@
             <!--barra di selezione generi musicali-->
             <div class="d-flex justify-content-end pb-4">
                 <select class="form-select">
-                    <option selected>Seleziona il genere dal menù</option>
+                    <option disabled selected>Seleziona il genere dal menù</option>
                     <option v-for="(generi, i) in fetchGenreList" :key="i" :value="i">{{ generi }}</option>
                 </select>
             </div>
@@ -32,12 +32,13 @@ export default {
         return {
             apiUrl: 'https://flynn.boolean.careers/exercises/api/array/music',
             discList: [],
+            currentGenre: null,
         }
     },
     methods: {
         fetchDiscList() {
             axios.get(this.apiUrl).then((risultato) => {
-                this.discList = risultato.data.response
+                this.discList = risultato.data.response;
             })
         },
     },
@@ -54,7 +55,7 @@ export default {
                 }
             })
 
-            return genreList
+            return genreList;
         },
     }
 }
@@ -67,13 +68,13 @@ export default {
 .main {
     background-color: $secondary;
     flex-grow: 1;
-}
 
-select {
-    width: 25%;
-    font-size: .8rem;
-    color: white;
-    background-color: $primary;
-    margin-right: 4.5rem;
+    select {
+        width: 25%;
+        font-size: .8rem;
+        color: white;
+        background-color: $primary;
+        margin-right: 4.5rem;
+    }
 }
 </style>
