@@ -32,7 +32,7 @@ export default {
         return {
             apiUrl: 'https://flynn.boolean.careers/exercises/api/array/music',
             discList: [],
-            currentGenre: null,
+            //selectedGenre: null,
         }
     },
     methods: {
@@ -57,7 +57,13 @@ export default {
 
             return genreList;
         },
-    }
+        // filterGenre() {
+        // this.discList.genre = this.selectedGenre
+        // return this.discList.filter((element) => {
+        //     return element.genre.includes(this.currentGenre)
+        //     })
+        // }
+    },
 }
 </script>
 
