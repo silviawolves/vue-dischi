@@ -15,7 +15,7 @@ export default {
   components: {
     TheHeader,
     TheMain
-}
+  }
 }
 </script>
 
@@ -24,5 +24,8 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 </style>

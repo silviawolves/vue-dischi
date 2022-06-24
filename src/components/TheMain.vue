@@ -1,6 +1,9 @@
 <template>
-    <div class="container">
-        
+    <div class="main">
+        <div class="container">
+
+
+        </div>
     </div>
 </template>
 
@@ -11,5 +14,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../assets/scss/_variables.scss";
+
+.main {
+    background-color: $secondary;
+    flex-grow: 1;
+}
 
 </style>
