@@ -2,6 +2,15 @@
     <div class="main">
         <div class="container py-5">
 
+            <!--barra di selezione generi musicali-->
+            <div class="d-flex justify-content-end pb-4">
+                <select class="form-select">
+                    <option selected>Seleziona il genere dal menù</option>
+                    <option v-for="(generi, i) in discList" :key="i" :value="i">{{ generi.genre }}</option>
+                </select>
+            </div>
+
+            <!--card singoli album-->
             <div class="row row-cols-5 gx-5 gy-3 mx-5">
                 <div class="col" v-for="(dischi, i) in discList" :key="i">
                     <CardDisco :disc-img="dischi.poster" :disc-title="dischi.title" :disc-author="dischi.author" :disc-year="dischi.year"></CardDisco>
@@ -45,5 +54,13 @@ export default {
 .main {
     background-color: $secondary;
     flex-grow: 1;
+}
+
+select {
+    width: 25%;
+    font-size: .8rem;
+    color: white;
+    background-color: $primary;
+    margin-right: 4.5rem;
 }
 </style>

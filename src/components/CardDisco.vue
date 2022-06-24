@@ -28,6 +28,7 @@ export default {
     height: 100%;
     padding: 1rem 1rem 2rem 1rem;
     text-align: center;
+    overflow: hidden;
 
     img {
         aspect-ratio: 1/1;
