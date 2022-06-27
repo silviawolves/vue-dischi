@@ -2,19 +2,18 @@
     <div class="main">
         <div class="container py-5">
 
-            <!--barra di selezione generi musicali-->
-            <!-- <div class="d-flex justify-content-end pb-4">
-                <select class="form-select" v-model="state.genereSelezionato" @change="onChange()">
-                    <option value="0" selected>Seleziona il genere dal menù</option>
-                    <option v-for="(generi, i) in fetchGenreList" :key="i" :value="generi">{{ generi }}</option>
-                </select>
-            </div> -->
-
-            <!--card singoli album-->
             <div class="row row-cols-5 gx-5 gy-3 mx-5">
-                <div class="col" v-for="(dischi, i) in filterGenre" :key="i">
-                    <CardDisco :disc-img="dischi.poster" :disc-title="dischi.title" :disc-author="dischi.author" :disc-year="dischi.year"></CardDisco>
-                </div>
+                <template v-if="!state.artistaSelezionato">
+                    <div class="col" v-for="(dischi, i) in filteredGenre" :key="i">
+                        <CardDisco :disc-img="dischi.poster" :disc-title="dischi.title" :disc-author="dischi.author" :disc-year="dischi.year"></CardDisco>
+                    </div>
+                </template>
+
+                <template v-if="!state.genereSelezionato">
+                    <div class="col" v-for="(dischi, i) in filteredArtist" :key="i">
+                        <CardDisco :disc-img="dischi.poster" :disc-title="dischi.title" :disc-author="dischi.author" :disc-year="dischi.year"></CardDisco>
+                    </div>
+                </template>
             </div>
             
         </div>
@@ -51,12 +50,22 @@ export default {
         state() {
             return state
         },
-        filterGenre() {
+        filteredGenre() {
             if (!state.genereSelezionato) {
                 return state.discList
             }
+
             return state.discList.filter((element) => {
                 return element.genre === state.genereSelezionato
+            })
+        },
+        filteredArtist() {
+            if (!state.artistaSelezionato) {
+                return state.discList
+            }
+
+            return state.discList.filter((element) => {
+                return element.author === state.artistaSelezionato
             })
         },
     },

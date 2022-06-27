@@ -11,7 +11,7 @@
 import { state } from '../store.js'
 
 export default {
-    name: 'SelectBar',
+    name: 'SelectGenre',
     computed: {
         state() {
             return state;
@@ -36,6 +36,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "../assets/scss/_variables.scss";
+
     select {
         width: 100%;
         font-size: .8rem;

@@ -1,16 +1,20 @@
 <template>
     <div class="header">
         <img src="/img/logo-small.svg" alt="spotify logo">
-        <SelectBar></SelectBar>
+        <div class="d-flex gap-3">
+            <SelectArtist></SelectArtist>
+            <SelectGenre></SelectGenre>
+        </div>
     </div>
 </template>
 
 <script>
-import SelectBar from "./SelectBar.vue";
+import SelectGenre from "./SelectGenre.vue";
+import SelectArtist from "./SelectArtist.vue";
 
 export default {
     name: "TheHeader",
-    components: { SelectBar }
+    components: { SelectGenre, SelectArtist }
 }
 </script>
 
