@@ -3,12 +3,12 @@
         <div class="container py-5">
 
             <!--barra di selezione generi musicali-->
-            <div class="d-flex justify-content-end pb-4">
-                <select class="form-select" v-model="valoreSelezionato" @change="onChange()">
+            <!-- <div class="d-flex justify-content-end pb-4">
+                <select class="form-select" v-model="state.genereSelezionato" @change="onChange()">
                     <option value="0" selected>Seleziona il genere dal menù</option>
                     <option v-for="(generi, i) in fetchGenreList" :key="i" :value="generi">{{ generi }}</option>
                 </select>
-            </div>
+            </div> -->
 
             <!--card singoli album-->
             <div class="row row-cols-5 gx-5 gy-3 mx-5">
@@ -24,6 +24,7 @@
 <script>
 import CardDisco from './CardDisco.vue'
 import axios from 'axios'
+import { state } from '../store.js'
 
 export default {
     name: "TheMain",
@@ -31,45 +32,32 @@ export default {
     data() {
         return {
             apiUrl: 'https://flynn.boolean.careers/exercises/api/array/music',
-            discList: [],
-            valoreSelezionato: 0,
         }
     },
     methods: {
         fetchDiscList() {
             axios.get(this.apiUrl).then((risultato) => {
-                this.discList = risultato.data.response;
+                state.discList = risultato.data.response;
             })
             .catch(() => {
                 alert("L'operazione non è andata a buon fine.")
             })
-        },
-        onChange() {
-            console.log(this.valoreSelezionato)
         },
     },
     mounted() {
         this.fetchDiscList()
     },
     computed: {
-        fetchGenreList() {
-            const genreList = [];
-
-            this.discList.forEach((disco) => {
-                if (!genreList.includes(disco.genre)) {
-                    genreList.push(disco.genre)
-                }
-            })
-
-            return genreList;
+        state() {
+            return state
         },
         filterGenre() {
-            if (!this.valoreSelezionato) {
-                return this.discList
+            if (!state.genereSelezionato) {
+                return state.discList
             }
-            return this.discList.filter((element) => {
-                return element.genre === this.valoreSelezionato
-                })
+            return state.discList.filter((element) => {
+                return element.genre === state.genereSelezionato
+            })
         },
     },
 }
