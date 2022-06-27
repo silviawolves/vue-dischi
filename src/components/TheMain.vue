@@ -6,13 +6,13 @@
             <div class="d-flex justify-content-end pb-4">
                 <select class="form-select" v-model="valoreSelezionato" @change="onChange()">
                     <option value="0" selected>Seleziona il genere dal menù</option>
-                    <option v-for="(generi, i) in fetchGenreList" :key="i" :value="i + 1">{{ generi }}</option>
+                    <option v-for="(generi, i) in fetchGenreList" :key="i" :value="generi">{{ generi }}</option>
                 </select>
             </div>
 
             <!--card singoli album-->
             <div class="row row-cols-5 gx-5 gy-3 mx-5">
-                <div class="col" v-for="(dischi, i) in discList" :key="i">
+                <div class="col" v-for="(dischi, i) in filterGenre" :key="i">
                     <CardDisco :disc-img="dischi.poster" :disc-title="dischi.title" :disc-author="dischi.author" :disc-year="dischi.year"></CardDisco>
                 </div>
             </div>
@@ -63,12 +63,14 @@ export default {
 
             return genreList;
         },
-        // filterGenre() {
-        // this.discList.genre = this.selectedGenre
-        // return this.discList.filter((element) => {
-        //     return element.genre.includes(this.currentGenre)
-        //     })
-        // }
+        filterGenre() {
+            if (!this.valoreSelezionato) {
+                return this.discList
+            }
+            return this.discList.filter((element) => {
+                return element.genre === this.valoreSelezionato
+                })
+        },
     },
 }
 </script>
