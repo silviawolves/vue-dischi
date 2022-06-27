@@ -4,13 +4,19 @@
 
             <div class="row row-cols-5 gx-5 gy-3 mx-5">
                 <template v-if="!state.artistaSelezionato">
-                    <div class="col" v-for="(dischi, i) in filteredGenre" :key="i">
+                    <div class="col" v-for="dischi in filteredGenre" :key="dischi.author">
                         <CardDisco :disc-img="dischi.poster" :disc-title="dischi.title" :disc-author="dischi.author" :disc-year="dischi.year"></CardDisco>
                     </div>
                 </template>
 
                 <template v-if="!state.genereSelezionato">
-                    <div class="col" v-for="(dischi, i) in filteredArtist" :key="i">
+                    <div class="col" v-for="dischi in filteredArtist" :key="dischi.poster">
+                        <CardDisco :disc-img="dischi.poster" :disc-title="dischi.title" :disc-author="dischi.author" :disc-year="dischi.year"></CardDisco>
+                    </div>
+                </template>
+
+                <template v-if="state.genereSelezionato && state.artistaSelezionato">
+                    <div class="col" v-for="(dischi, i) in filteredAlbum" :key="i">
                         <CardDisco :disc-img="dischi.poster" :disc-title="dischi.title" :disc-author="dischi.author" :disc-year="dischi.year"></CardDisco>
                     </div>
                 </template>
@@ -60,12 +66,13 @@ export default {
             })
         },
         filteredArtist() {
-            if (!state.artistaSelezionato) {
-                return state.discList
-            }
-
             return state.discList.filter((element) => {
                 return element.author === state.artistaSelezionato
+            })
+        },
+        filteredAlbum() {
+            return state.discList.filter((element) => {
+                return element.author === state.artistaSelezionato || element.genre === state.genereSelezionato
             })
         },
     },
