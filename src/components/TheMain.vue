@@ -40,6 +40,9 @@ export default {
             axios.get(this.apiUrl).then((risultato) => {
                 this.discList = risultato.data.response;
             })
+            .catch(() => {
+                alert("L'operazione non è andata a buon fine.")
+            })
         },
         onChange() {
             console.log(this.valoreSelezionato)
@@ -77,6 +80,7 @@ export default {
 .main {
     background-color: $secondary;
     flex-grow: 1;
+    overflow: auto;
 
     select {
         width: 25%;
