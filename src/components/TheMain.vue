@@ -2,7 +2,7 @@
     <div class="main">
         <div class="container py-5">
 
-            <div class="row row-cols-5 gx-5 gy-3 mx-5">
+            <div class="row row-cols-5 gx-5 gy-3 mx-5 justify-content-center">
                 <template v-if="!state.artistaSelezionato">
                     <div class="col" v-for="dischi in filteredGenre" :key="dischi.author">
                         <CardDisco :disc-img="dischi.poster" :disc-title="dischi.title" :disc-author="dischi.author" :disc-year="dischi.year"></CardDisco>
@@ -41,8 +41,13 @@ export default {
     },
     methods: {
         fetchDiscList() {
+            state.loading = true;
             axios.get(this.apiUrl).then((risultato) => {
                 state.discList = risultato.data.response;
+
+                setTimeout(() => {
+                    state.loading = false
+                }, 1000);
             })
             .catch(() => {
                 alert("L'operazione non è andata a buon fine.")

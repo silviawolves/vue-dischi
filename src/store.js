@@ -4,4 +4,5 @@ export const state = Vue.observable({
     discList: [],
     genereSelezionato: 0,
     artistaSelezionato: 0,
+    loading: false,
 })
